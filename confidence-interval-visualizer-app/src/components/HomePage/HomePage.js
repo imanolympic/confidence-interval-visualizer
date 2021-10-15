@@ -4,46 +4,11 @@ import IntervalTypeToggleButton from "./IntervalTypeToggleButton/IntervalTypeTog
 import ProportionsIntervalForm from "./ProportionsIntervalForm/ProportionsIntervalForm";
 import MeansIntervalForm from "./MeansIntervalForm/MeansIntervalForm";
 import HomePageStyle from "./HomePage.module.scss";
+import { options } from "./chartOptions";
 
 const HomePage = () => {
   const [intervalType, setIntervalType] = useState("proportions");
   const [datasets, setDatasets] = useState([]);
-
-  const options = {
-    maintainAspectRatio: false,
-    legend: {
-      position: "bottom",
-      labels: {
-        fontColor: "rgb(220, 207, 236)",
-        fontSize: 14,
-      },
-    },
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            display: false,
-            beginAtZero: true,
-          },
-          gridLines: {
-            display: false,
-          },
-        },
-      ],
-      xAxes: [
-        {
-          gridLines: {
-            display: false,
-          },
-          ticks: {
-            display: true,
-            fontColor: "rgb(220, 207, 236)",
-            beginAtZero: false,
-          },
-        },
-      ],
-    },
-  };
 
   const data = {
     datasets: datasets,
