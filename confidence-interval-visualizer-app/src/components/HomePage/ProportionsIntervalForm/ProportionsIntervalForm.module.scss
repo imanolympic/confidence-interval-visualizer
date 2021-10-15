@@ -38,14 +38,14 @@ $text-color: rgba(251, 251, 251, 1);
     }
   }
 
-  .form_sampleParameter {
-    .form_sampleParameter_heading {
+  .form_sampleProportion {
+    .form_sampleProportion_heading {
       color: $secondary-color;
       font-family: AirbnbCereal;
       font-size: 16pt;
     }
 
-    .form_sampleParameter_input {
+    .form_sampleProportion_input {
       background-color: $text-color;
       border-style: none;
       border-radius: 2px;

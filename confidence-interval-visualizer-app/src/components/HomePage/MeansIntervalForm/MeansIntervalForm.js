@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import MeansIntervalFormStyle from "./MeansIntervalForm.module.scss";
 
 const MeansIntervalForm = ({ datasets, setDatasets }) => {
-  const [sampleMean, setSampleMean] = useState(0.0);
-  const [sampleStandardDeviation, setSampleStandardDeviation] = useState(0.0);
-  const [sampleSize, setSampleSize] = useState(10);
-  const [confidenceLevel, setConfidenceLevel] = useState(0.95);
+  const [sampleMean, setSampleMean] = useState(0.287);
+  const [sampleStandardDeviation, setSampleStandardDeviation] = useState(0.069);
+  const [sampleSize, setSampleSize] = useState(15);
+  const [confidenceLevel, setConfidenceLevel] = useState(0.9);
 
   const libR = require("lib-r-math.js");
   const { StudentT } = libR;
@@ -34,8 +34,6 @@ const MeansIntervalForm = ({ datasets, setDatasets }) => {
     const letfBound = sampleMean - confidenceScore * stdError;
     const rightBound = sampleMean + confidenceScore * stdError;
 
-    console.log(rightBound);
-
     return {
       label: "Graph",
       data: [
@@ -53,18 +51,21 @@ const MeansIntervalForm = ({ datasets, setDatasets }) => {
     <>
       <form class={MeansIntervalFormStyle.form}>
         <div class={MeansIntervalFormStyle.form_sampleSize}>
-          <div class={MeansIntervalFormStyle.form_sampleParameter}>
-            <h1 class={MeansIntervalFormStyle.form_sampleParameter_heading}>
-              Sample Parameter
+          <div class={MeansIntervalFormStyle.form_sampleMean}>
+            <h1 class={MeansIntervalFormStyle.form_sampleMean_heading}>
+              Sample Mean
             </h1>
             <input
-              class={MeansIntervalFormStyle.form_sampleParameter_input}
+              class={MeansIntervalFormStyle.form_sampleMean_input}
               type="number"
               step="0.01"
               min="0"
               placeholder={sampleMean}
               onChange={(e) => {
-                e.target.value = Math.abs(e.target.value);
+                e.target.value =
+                  e.target.value < 0
+                    ? Math.abs(e.target.value)
+                    : e.target.value;
                 setSampleMean(e.target.value);
               }}
             ></input>
@@ -115,7 +116,8 @@ const MeansIntervalForm = ({ datasets, setDatasets }) => {
             step="0.01"
             placeholder={confidenceLevel}
             onChange={(e) => {
-              e.target.value = Math.abs(e.target.value);
+              e.target.value =
+                e.target.value < 0 ? Math.abs(e.target.value) : e.target.value;
               setConfidenceLevel(e.target.value);
             }}
           ></input>
@@ -141,7 +143,6 @@ const MeansIntervalForm = ({ datasets, setDatasets }) => {
               parseFloat(confidenceScore),
               parseFloat(stdError)
             );
-            console.log(confidenceScore);
 
             setDatasets([...datasets, newDataset]);
           }}
