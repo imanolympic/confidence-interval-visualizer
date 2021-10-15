@@ -3,6 +3,9 @@ $secondary-color: rgba(220, 207, 236, 1);
 $text-color: rgba(251, 251, 251, 1);
 
 .buttonGroup {
+  margin-top: 10px;
+  margin-left: 20px;
+
   .buttonGroupButton {
     color: $secondary-color;
     border-color: $text-color;
