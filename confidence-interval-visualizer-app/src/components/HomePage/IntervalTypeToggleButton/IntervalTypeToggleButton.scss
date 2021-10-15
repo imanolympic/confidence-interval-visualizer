@@ -1,0 +1,20 @@
+$primary-color: rgba(65, 71, 112, 0.85);
+$secondary-color: rgba(220, 207, 236, 1);
+$text-color: rgba(251, 251, 251, 1);
+
+.buttonGroup {
+  .buttonGroupButton {
+    color: $secondary-color;
+    border-color: $text-color;
+  }
+
+  .buttonGroupButton.Mui-selected {
+    color: $primary-color;
+    background-color: rgba(220, 207, 236, 0.5);
+  }
+
+  .buttonGroupButton:hover {
+    background-color: none;
+    color: none;
+  }
+}

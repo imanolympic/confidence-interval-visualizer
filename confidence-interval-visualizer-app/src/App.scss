@@ -1,0 +1,70 @@
+$primary-color: rgba(65, 71, 112, 0.85);
+$secondary-color: rgba(220, 207, 236, 1);
+$text-color: rgba(251, 251, 251, 1);
+
+body {
+  margin: 0;
+  background-color: $primary-color;
+}
+
+.App {
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@font-face {
+  font-family: "AirbnbCereal";
+  src: local("AirbnbCereal"),
+    url(./assets/fonts/cereal-airbnb/AirbnbCereal-Book.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: "AirbnbCereal-Medium";
+  src: local("AirbnbCereal-Medium"),
+    url(./assets/fonts/cereal-airbnb/AirbnbCereal-Medium.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: "AirbnbCereal-Bold";
+  src: local("AirbnbCereal-Bold"),
+    url(./assets/fonts/cereal-airbnb/AirbnbCereal-Bold.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: "AirbnbCereal-Light";
+  src: local("AirbnbCereal-Light"),
+    url(./assets/fonts/cereal-airbnb/AirbnbCereal-Light.ttf) format("opentype");
+}

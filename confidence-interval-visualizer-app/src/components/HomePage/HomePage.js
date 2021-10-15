@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Scatter } from "react-chartjs";
+import IntervalTypeToggleButton from "./IntervalTypeToggleButton/IntervalTypeToggleButton";
 import HomePageStyle from "./HomePage.module.scss";
 
 const HomePage = () => {
-  const [datasets, setDatasets] = useState([]);
   const [sampleSize, setSampleSize] = useState(10);
   const [confidenceLevel, setConfidenceLevel] = useState(0.95);
-  const [sampleParameter, setSampleParameter] = useState(0);
+  const [sampleParameter, setSampleParameter] = useState(0.0);
   const [intervalType, setIntervalType] = useState("proportions");
+  const [datasets, setDatasets] = useState([]);
 
   const randColor = () => {
     const r = Math.floor(Math.random() * (255 + 1));
@@ -74,10 +75,6 @@ const HomePage = () => {
     return stdError;
   };
 
-  const data = {
-    datasets: datasets,
-  };
-
   const getConfidenceScore = (confidenceLevel) => {
     const alpha = 1 - confidenceLevel;
 
@@ -96,10 +93,20 @@ const HomePage = () => {
         { x: letfBound, y: 0 },
       ],
       backgroundColor: `rgb(${randColor()})`,
+      pointStyle: "triangle",
+      radius: 10,
     };
   };
 
   const options = {
+    maintainAspectRatio: false,
+    legend: {
+      position: "bottom",
+      labels: {
+        fontColor: "rgb(220, 207, 236)",
+        fontSize: 14,
+      },
+    },
     scales: {
       yAxes: [
         {
@@ -117,9 +124,9 @@ const HomePage = () => {
           gridLines: {
             display: false,
           },
-        },
-        {
           ticks: {
+            display: true,
+            fontColor: "rgb(220, 207, 236)",
             beginAtZero: false,
           },
         },
@@ -127,31 +134,54 @@ const HomePage = () => {
     },
   };
 
+  const data = {
+    datasets: datasets,
+  };
+
   return (
     <div class={HomePageStyle.container}>
-      <h1> Confidence Interval Visualizer </h1>
-      <form>
-        <div>
-          <h1> Sample Size (n): </h1>
+      <h1 class={HomePageStyle.title}> Confidence Interval Visualizer </h1>
+      <form class={HomePageStyle.form}>
+        <IntervalTypeToggleButton
+          type={intervalType}
+          setType={setIntervalType}
+        />
+        <div class={HomePageStyle.form_sampleSize}>
+          <h1 class={HomePageStyle.form_sampleSize_heading}>Sample Size (n)</h1>
           <input
+            class={HomePageStyle.form_sampleSize_input}
+            type="number"
+            step="1"
             placeholder={sampleSize}
             onChange={(e) => {
               setSampleSize(e.target.value);
             }}
           ></input>
         </div>
-        <div>
-          <h1> Confidence Level </h1>
+        <div class={HomePageStyle.form_confidenceLevel}>
+          <h1 class={HomePageStyle.form_confidenceLevel_heading}>
+            Confidence Level
+          </h1>
           <input
+            class={HomePageStyle.form_confidenceLevel_input}
+            type="number"
+            step="0.01"
             placeholder={confidenceLevel}
             onChange={(e) => {
               setConfidenceLevel(e.target.value);
             }}
           ></input>
         </div>
-        <div>
-          <h1> Sample Parameter: </h1>
+        <div class={HomePageStyle.form_sampleParameter}>
+          <h1 class={HomePageStyle.form_sampleParameter_heading}>
+            Sample Parameter
+          </h1>
           <input
+            class={HomePageStyle.form_sampleParameter_input}
+            type="number"
+            step="0.01"
+            min="0"
+            oninput="this.value = Math.abs(this.value)"
             placeholder={sampleParameter}
             onChange={(e) => {
               setSampleParameter(e.target.value);
@@ -159,6 +189,7 @@ const HomePage = () => {
           ></input>
         </div>
         <button
+          class={HomePageStyle.form_submitButton}
           onClick={(e) => {
             e.preventDefault();
 
@@ -167,7 +198,11 @@ const HomePage = () => {
 
             setDatasets([
               ...datasets,
-              getNewDataset(sampleParameter, confidenceScore, stdError),
+              getNewDataset(
+                parseFloat(sampleParameter),
+                confidenceScore,
+                stdError
+              ),
             ]);
           }}
         >
@@ -175,7 +210,13 @@ const HomePage = () => {
         </button>
       </form>
 
-      <Scatter height={400} width={400} data={data} options={options} />
+      <div class={HomePageStyle.chart}>
+        <Scatter
+          class={HomePageStyle.chart_scatter}
+          data={data}
+          options={options}
+        />
+      </div>
     </div>
   );
 };
