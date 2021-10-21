@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import InfoIcon from "@mui/icons-material/Info";
 import IconButton from "@mui/material/IconButton";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
-import { makeStyles, styled } from "@material-ui/core/styles";
-import InfoTooltipStyle from "./InfoTooltip.module.scss";
+import { styled } from "@material-ui/core/styles";
 
 const InfoTooltip = ({ text }) => {
   const LightTooltip = styled(({ className, ...props }) => (
