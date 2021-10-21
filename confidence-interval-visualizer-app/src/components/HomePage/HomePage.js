@@ -9,6 +9,7 @@ import { options } from "./chartOptions";
 const HomePage = () => {
   const [intervalType, setIntervalType] = useState("proportions");
   const [datasets, setDatasets] = useState([]);
+  const [popupToggle, setPopupToggle] = useState(true);
 
   const data = {
     datasets: datasets,
@@ -39,6 +40,12 @@ const HomePage = () => {
           data={data}
           options={options}
         />
+      </div>
+
+      <div className={HomePageStyle.popup}>
+        <div className={HomePageStyle.popup_content}>
+          <h1> POPUP </h1>
+        </div>
       </div>
     </div>
   );

@@ -33,4 +33,16 @@ $text-color: rgba(251, 251, 251, 1);
       justify-items: center;
     }
   }
+
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.25);
+
+    .popup_content {
+      background-color: white;
+      position: absolute;
+    }
+  }
 }

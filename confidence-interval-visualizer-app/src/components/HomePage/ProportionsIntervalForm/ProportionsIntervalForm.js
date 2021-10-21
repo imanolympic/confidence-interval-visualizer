@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import InfoToolTip from "../InfoTooltip/InfoTooltip";
 import ProportionsIntervalFormStyle from "./ProportionsIntervalForm.module.scss";
 
 const ProportionsIntervalForm = ({ datasets, setDatasets }) => {
@@ -50,11 +51,36 @@ const ProportionsIntervalForm = ({ datasets, setDatasets }) => {
     <>
       <form class={ProportionsIntervalFormStyle.form}>
         <div class={ProportionsIntervalFormStyle.form_sampleProportion}>
-          <h1
-            class={ProportionsIntervalFormStyle.form_sampleProportion_heading}
-          >
-            Sample Proportion
-          </h1>
+          <div class={ProportionsIntervalFormStyle.form_sampleProportion_top}>
+            <h1
+              class={ProportionsIntervalFormStyle.form_sampleProportion_heading}
+            >
+              Sample Proportion
+            </h1>
+            <InfoToolTip
+              text={[
+                <p>
+                  Example for Proportions: We want to know what proportion of
+                  the dogs walking around Swarthmore’s campus are multi-colored,
+                  as opposed to solid-colored.
+                </p>,
+                <p>
+                  Sample Proportion: 63.4% of the dogs in our sample were
+                  multi-colored. Therefore, our sample proportion is 0.634. If
+                  you change this variable, the confidence interval will shift,
+                  but its size won’t change. This value is represented by the
+                  middle marker in the interval model displayed below.
+                </p>,
+                <p>
+                  Sample Proportion: 63.4% of the dogs in our sample were
+                  multi-colored. Therefore, our sample proportion is 0.634. If
+                  you change this variable, the confidence interval will shift,
+                  but its size won’t change. This value is represented by the
+                  middle marker in the interval model displayed below.
+                </p>,
+              ]}
+            />
+          </div>
           <input
             class={ProportionsIntervalFormStyle.form_sampleProportion_input}
             type="number"
@@ -68,6 +94,7 @@ const ProportionsIntervalForm = ({ datasets, setDatasets }) => {
             }}
           ></input>
         </div>
+
         <div class={ProportionsIntervalFormStyle.form_sampleSize}>
           <h1 class={ProportionsIntervalFormStyle.form_sampleSize_heading}>
             Sample Size (n)
@@ -84,6 +111,7 @@ const ProportionsIntervalForm = ({ datasets, setDatasets }) => {
             }}
           ></input>
         </div>
+
         <div class={ProportionsIntervalFormStyle.form_confidenceLevel}>
           <h1 class={ProportionsIntervalFormStyle.form_confidenceLevel_heading}>
             Confidence Level

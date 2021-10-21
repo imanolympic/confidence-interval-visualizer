@@ -8,6 +8,26 @@ $text-color: rgba(251, 251, 251, 1);
   flex-direction: column;
   padding-left: 20px;
 
+  .form_sampleProportion {
+    .form_sampleProportion_top {
+      display: flex;
+      align-items: center;
+
+      .form_sampleProportion_heading {
+        color: $secondary-color;
+        font-family: AirbnbCereal;
+        font-size: 16pt;
+      }
+    }
+
+    .form_sampleProportion_input {
+      background-color: $text-color;
+      border-style: none;
+      border-radius: 2px;
+      height: 20px;
+    }
+  }
+
   .form_sampleSize {
     .form_sampleSize_heading {
       color: $secondary-color;
@@ -31,21 +51,6 @@ $text-color: rgba(251, 251, 251, 1);
     }
 
     .form_confidenceLevel_input {
-      background-color: $text-color;
-      border-style: none;
-      border-radius: 2px;
-      height: 20px;
-    }
-  }
-
-  .form_sampleProportion {
-    .form_sampleProportion_heading {
-      color: $secondary-color;
-      font-family: AirbnbCereal;
-      font-size: 16pt;
-    }
-
-    .form_sampleProportion_input {
       background-color: $text-color;
       border-style: none;
       border-radius: 2px;
